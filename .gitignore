@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+target/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build
+.next/
+out/
+dist/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+
+# Database
+*.db
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+
+# Sentry
+.sentryclirc
