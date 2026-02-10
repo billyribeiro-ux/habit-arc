@@ -49,19 +49,19 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background via-background to-primary/5 p-4">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-background via-background to-primary/[0.03] p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+        <Card className="w-full max-w-md shadow-xl shadow-black/[0.04] dark:shadow-black/[0.2] border-0 bg-card">
+          <CardHeader className="text-center pb-2">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/15">
               <Flame className="h-6 w-6 text-primary" />
             </div>
-            <CardTitle className="text-2xl">Create your account</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-2xl font-bold tracking-tight">Create your account</CardTitle>
+            <CardDescription className="mt-1">
               Start building better habits today
             </CardDescription>
           </CardHeader>

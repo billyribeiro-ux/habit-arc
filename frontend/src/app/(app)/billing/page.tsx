@@ -102,8 +102,8 @@ export default function BillingPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold">Billing</h1>
-        <p className="mt-1 text-muted-foreground">
+        <h1 className="text-2xl font-bold tracking-tight">Billing</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
           Manage your subscription and billing
         </p>
       </div>

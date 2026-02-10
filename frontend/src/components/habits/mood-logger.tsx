@@ -37,11 +37,11 @@ function SliderRow({ icon, label, value, labels, onChange, color }: SliderRowPro
           <button
             key={v}
             onClick={() => onChange(v)}
-            className={`h-8 flex-1 rounded-md text-xs font-medium transition-all ${
+            className={`h-9 flex-1 rounded-lg text-xs font-semibold transition-all duration-150 ${
               v === value
-                ? `${color} text-white shadow-sm`
+                ? `${color} text-white shadow-md shadow-current/20`
                 : v <= value
-                ? `${color}/20`
+                ? `${color}/15`
                 : "bg-muted hover:bg-muted-foreground/10"
             }`}
           >

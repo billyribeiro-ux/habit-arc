@@ -32,8 +32,8 @@ export default function InsightsPage() {
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">AI Insights</h1>
-          <p className="mt-1 text-muted-foreground">
+          <h1 className="text-2xl font-bold tracking-tight">AI Insights</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
             Get personalized recommendations powered by Claude
           </p>
         </div>

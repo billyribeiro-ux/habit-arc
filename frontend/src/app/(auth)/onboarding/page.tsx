@@ -81,27 +81,35 @@ export default function OnboardingPage() {
   const screen = SCREENS[step];
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center px-6">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-background via-background to-primary/[0.03] px-6">
       <div className="w-full max-w-md">
+        {/* Logo */}
+        <div className="mb-12 flex items-center justify-center gap-2">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/15">
+            <Target className="h-5 w-5 text-primary" />
+          </div>
+          <span className="text-xl font-bold tracking-tight">HabitArc</span>
+        </div>
+
         <AnimatePresence mode="wait">
           <motion.div
             key={step}
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -40 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col items-center text-center"
           >
             <div
-              className={`mb-8 flex h-24 w-24 items-center justify-center rounded-3xl ${screen.bg}`}
+              className={`mb-8 flex h-20 w-20 items-center justify-center rounded-2xl ${screen.bg} shadow-lg shadow-black/[0.03]`}
             >
-              <screen.icon className={`h-12 w-12 ${screen.iconColor}`} />
+              <screen.icon className={`h-10 w-10 ${screen.iconColor}`} />
             </div>
 
             <h1 className="text-3xl font-bold tracking-tight">
               {screen.title}
             </h1>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-sm text-base leading-relaxed text-muted-foreground">
               {screen.description}
             </p>
           </motion.div>
@@ -113,10 +121,10 @@ export default function OnboardingPage() {
             <button
               key={i}
               onClick={() => setStep(i)}
-              className={`h-2 rounded-full transition-all ${
+              className={`h-2 rounded-full transition-all duration-300 ${
                 i === step
-                  ? "w-8 bg-primary"
-                  : "w-2 bg-muted-foreground/20"
+                  ? "w-8 bg-primary shadow-sm shadow-primary/30"
+                  : "w-2 bg-muted-foreground/20 hover:bg-muted-foreground/30"
               }`}
             />
           ))}
@@ -128,27 +136,27 @@ export default function OnboardingPage() {
             <>
               <Button
                 size="lg"
-                className="w-full"
+                className="w-full gap-2"
                 onClick={handleGetStarted}
                 disabled={loading || demoLoading}
               >
                 {loading ? "Setting up..." : "Get Started"}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="h-4 w-4" />
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full border-primary/30 text-primary hover:bg-primary/5"
+                className="w-full gap-2 border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/30"
                 onClick={handleTryMe}
                 disabled={loading || demoLoading}
               >
                 {demoLoading ? "Loading demo..." : "Try Me — no signup needed"}
-                <Play className="ml-2 h-4 w-4" />
+                <Play className="h-4 w-4" />
               </Button>
               <Button
                 variant="ghost"
                 size="lg"
-                className="w-full"
+                className="w-full text-muted-foreground"
                 onClick={handleSkipToSignup}
               >
                 I already have an account
@@ -156,9 +164,9 @@ export default function OnboardingPage() {
             </>
           ) : (
             <>
-              <Button size="lg" className="w-full" onClick={handleNext}>
+              <Button size="lg" className="w-full gap-2" onClick={handleNext}>
                 Next
-                <ChevronRight className="ml-2 h-4 w-4" />
+                <ChevronRight className="h-4 w-4" />
               </Button>
               <Button
                 variant="ghost"

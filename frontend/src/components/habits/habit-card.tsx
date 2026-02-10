@@ -69,28 +69,28 @@ export function HabitCard({ habit, onEdit }: HabitCardProps) {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.2 }}
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.97 }}
+      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
     >
-      <Card className={`group relative overflow-hidden p-4 transition-shadow hover:shadow-md ${isDimmed ? "opacity-50" : ""}`}>
+      <Card className={`group relative overflow-hidden transition-all duration-200 hover:shadow-md ${isDimmed ? "opacity-40" : ""}`}>
         {/* Color accent bar */}
         <div
-          className="absolute inset-y-0 left-0 w-1"
+          className="absolute inset-y-0 left-0 w-1 rounded-l-xl"
           style={{ backgroundColor: habit.color }}
         />
 
-        <div className="flex items-center gap-4 pl-3">
+        <div className="flex items-center gap-4 p-4 pl-5">
           {/* Completion toggle button */}
           <motion.button
-            whileTap={{ scale: 0.9 }}
+            whileTap={{ scale: 0.85 }}
             onClick={handleToggle}
             disabled={toggleCompletion.isPending}
-            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
+            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border-2 transition-all duration-200 ${
               habit.is_complete
-                ? "border-green-500 bg-green-500 text-white"
-                : "border-muted-foreground/30 hover:border-primary"
+                ? "border-emerald-500 bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
+                : "border-muted-foreground/20 hover:border-primary hover:bg-primary/5"
             }`}
           >
             {habit.is_complete && <Check className="h-5 w-5" />}
@@ -100,7 +100,7 @@ export function HabitCard({ habit, onEdit }: HabitCardProps) {
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
               <h3
-                className={`truncate font-medium ${
+                className={`truncate text-sm font-semibold ${
                   habit.is_complete
                     ? "text-muted-foreground line-through"
                     : ""
@@ -109,19 +109,19 @@ export function HabitCard({ habit, onEdit }: HabitCardProps) {
                 {habit.name}
               </h3>
               {habit.current_streak > 0 && (
-                <span className="flex items-center gap-1 rounded-full bg-orange-500/10 px-2 py-0.5 text-xs font-medium text-orange-500">
+                <span className="flex items-center gap-1 rounded-full bg-orange-500/10 px-2 py-0.5 text-[11px] font-semibold text-orange-500">
                   <Flame className="h-3 w-3" />
                   {habit.current_streak}
                 </span>
               )}
               {schedule && (
-                <span className="flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
+                <span className="hidden sm:flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">
                   <ScheduleIcon frequency={habit.frequency} />
                   {schedule}
                 </span>
               )}
               {!habit.is_due_today && (
-                <span className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
+                <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">
                   Not due today
                 </span>
               )}
@@ -129,8 +129,8 @@ export function HabitCard({ habit, onEdit }: HabitCardProps) {
 
             {habit.target_per_day > 1 && (
               <div className="mt-2 flex items-center gap-2">
-                <Progress value={progress} className="h-2" />
-                <span className="text-xs text-muted-foreground">
+                <Progress value={progress} className="h-1.5" />
+                <span className="text-[11px] font-medium text-muted-foreground">
                   {habit.completed_today}/{habit.target_per_day}
                 </span>
               </div>
@@ -144,22 +144,22 @@ export function HabitCard({ habit, onEdit }: HabitCardProps) {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+          <div className="flex items-center gap-0.5 opacity-0 transition-opacity duration-150 group-hover:opacity-100">
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8"
+              className="h-8 w-8 rounded-lg"
               onClick={() => onEdit(habit)}
             >
-              <Edit className="h-4 w-4" />
+              <Edit className="h-3.5 w-3.5" />
             </Button>
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8 text-destructive"
+              className="h-8 w-8 rounded-lg text-destructive hover:bg-destructive/10"
               onClick={handleDelete}
             >
-              <Trash2 className="h-4 w-4" />
+              <Trash2 className="h-3.5 w-3.5" />
             </Button>
           </div>
         </div>

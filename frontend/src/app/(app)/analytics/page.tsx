@@ -53,19 +53,20 @@ export default function AnalyticsPage() {
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Analytics</h1>
-          <p className="mt-1 text-muted-foreground">
+          <h1 className="text-2xl font-bold tracking-tight">Analytics</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
             Track your habit performance over time
           </p>
         </div>
-        <div className="flex gap-1 rounded-lg border p-1">
+        <div className="flex gap-1 rounded-xl border bg-card p-1 shadow-sm">
           {([7, 14, 30, 90] as Range[]).map((r) => (
             <Button
               key={r}
               variant={range === r ? "default" : "ghost"}
               size="sm"
+              className={`rounded-lg px-3 text-xs ${range === r ? "" : "text-muted-foreground"}`}
               onClick={() => setRange(r)}
             >
               {r}d

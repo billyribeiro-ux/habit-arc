@@ -95,12 +95,12 @@ export default function DemoConvertPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
       >
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+        <Card className="w-full max-w-md shadow-xl shadow-black/[0.04] dark:shadow-black/[0.2] border-0">
+          <CardHeader className="text-center pb-2">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/15">
               <Flame className="h-6 w-6 text-primary" />
             </div>
-            <CardTitle className="text-2xl">Save your progress</CardTitle>
+            <CardTitle className="text-2xl font-bold tracking-tight">Save your progress</CardTitle>
             <CardDescription>
               Create an account to keep your habits, streaks, and insights.
             </CardDescription>
