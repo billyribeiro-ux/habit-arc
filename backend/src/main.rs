@@ -159,13 +159,23 @@ async fn main() {
             auth::middleware::require_auth,
         ));
 
+    let allowed_origins: Vec<axum::http::HeaderValue> = {
+        let mut origins = vec![config
+            .frontend_url
+            .parse::<axum::http::HeaderValue>()
+            .unwrap()];
+        // In dev, also allow LAN access (e.g. testing from another device)
+        if let Ok(extra) = std::env::var("CORS_EXTRA_ORIGINS") {
+            for o in extra.split(',') {
+                if let Ok(hv) = o.trim().parse::<axum::http::HeaderValue>() {
+                    origins.push(hv);
+                }
+            }
+        }
+        origins
+    };
     let cors = CorsLayer::new()
-        .allow_origin(
-            config
-                .frontend_url
-                .parse::<axum::http::HeaderValue>()
-                .unwrap(),
-        )
+        .allow_origin(allowed_origins)
         .allow_methods([
             axum::http::Method::GET,
             axum::http::Method::POST,
