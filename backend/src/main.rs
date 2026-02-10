@@ -6,7 +6,7 @@ use axum::{
 use sqlx::PgPool;
 use std::sync::Arc;
 use tokio::sync::broadcast;
-use tower_http::cors::{Any, CorsLayer};
+use tower_http::cors::CorsLayer;
 use tower_http::trace::TraceLayer;
 
 mod auth;
@@ -166,8 +166,18 @@ async fn main() {
                 .parse::<axum::http::HeaderValue>()
                 .unwrap(),
         )
-        .allow_methods(Any)
-        .allow_headers(Any)
+        .allow_methods([
+            axum::http::Method::GET,
+            axum::http::Method::POST,
+            axum::http::Method::PUT,
+            axum::http::Method::DELETE,
+            axum::http::Method::OPTIONS,
+        ])
+        .allow_headers([
+            axum::http::header::AUTHORIZATION,
+            axum::http::header::CONTENT_TYPE,
+            axum::http::header::ACCEPT,
+        ])
         .allow_credentials(true);
 
     // Start demo cleanup worker (purges expired demo sessions every 5 min)

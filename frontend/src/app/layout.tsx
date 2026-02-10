@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description:
     "Track your habits, build streaks, and get AI-powered insights to improve your daily routines.",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/favicon.svg",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
